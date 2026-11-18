@@ -253,11 +253,11 @@ footer a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line
   </main>
 
   <section class="done" id="done" hidden aria-live="polite">
-    <div class="eyebrow">Request received</div>
-    <div class="ref" id="doneRef"></div>
+    <div class="eyebrow" id="doneBoat">Sea trial</div>
+    <div class="ref">Pending request</div>
     <p class="lede" style="color:var(--fg);font-size:18px">Thank you. Your sea trial request is with our team. We'll send you an email or message to let you know whether it's accepted or declined.</p>
     <dl id="doneList"></dl>
-    <p class="lede">Keep this reference. Once it's accepted, show it at the BLUECAT stand, ADNEC Marina Hall, 15 minutes before your slot. Questions? Call +971 2 550 7421.</p>
+    <p class="lede">Once it's accepted, come to the BLUECAT stand, ADNEC Marina Hall, 15 minutes before your slot. Questions? Call +971 2 550 7421.</p>
     <button class="ghost" id="again" type="button">Book another trial</button>
   </section>
 
@@ -501,7 +501,7 @@ async function fileToPayload(file){
 
 function showDone(ref,d){
   const {wd,dm}=dayLabel(d.date);
-  $("#doneRef").textContent=ref;
+  $("#doneBoat").textContent="Sea trial · "+d.boatName;
   const rows=[["Status","Waiting for approval"],["Boat",d.boatName],["Requested",`${wd} ${dm}, ${fmt12(d.time)}`],["Name",d.name],["Company",d.company],["Mobile",d.phone],["Email",d.email]];
   $("#doneList").innerHTML=rows.map(([k,v])=>`<dt>${k}</dt><dd></dd>`).join("");
   $("#doneList").querySelectorAll("dd").forEach((dd,i)=>dd.textContent=rows[i][1]);
